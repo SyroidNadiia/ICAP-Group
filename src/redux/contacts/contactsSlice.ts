@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchContacts } from "./operations";
+import { addContact, fetchContacts } from "./operations";
 import { Contact, ContactResponse, ContactsState, initialState } from "../../types";
 
 
@@ -25,6 +25,18 @@ const contactsSlice = createSlice({
         }
       )
       .addCase(fetchContacts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || "An error occurred";
+      })
+      .addCase(addContact.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addContact.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items.push(action.payload);
+      })
+      .addCase(addContact.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || "An error occurred";
       });

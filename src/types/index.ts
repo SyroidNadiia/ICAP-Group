@@ -22,3 +22,13 @@ export const initialState: ContactsState = {
   isLoading: false,
   error: null,
 };
+
+export type AddContactArgs = {
+  TableData: {
+    address: string;
+    birthday_date: string;
+    email: string;
+    name: string;
+    phone_number: string;
+  };
+};

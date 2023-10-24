@@ -1,13 +1,16 @@
 "use client";
 
-import { useRouter } from "next/router";
 import UniversalTable from "./../../components/UniversalTable/UniversalTable";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchContacts } from "@/redux/contacts/operations";
 import { getContacts } from "@/redux/contacts/selectors";
+import Button from "@/components/Button/Button";
+import AddContactModal from "@/components/AddContactModal/AddContactModal";
+import Modal from "@/components/Modal/Modal";
 
 export default function Table() {
+  const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,7 +26,14 @@ export default function Table() {
   return (
     <div>
       <h1>Hello</h1>
+      <Button onClick={() => setModalOpen(true)}>Add Contact</Button>
       <UniversalTable data={data}></UniversalTable>
+
+      {isModalOpen && (
+        <Modal onBackdropClick={() => setModalOpen(false)}>
+          <AddContactModal closeModal={() => setModalOpen(false)} />
+        </Modal>
+      )}
     </div>
   );
 }
