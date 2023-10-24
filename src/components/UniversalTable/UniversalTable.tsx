@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./UniversalTable.module.scss";
 
 type DataRow = {
   [key: string]: string | number;
@@ -8,27 +9,30 @@ type UniversalTableProps = {
   data: DataRow[];
 };
 
-const UniversalTable: React.FC<UniversalTableProps> = ({data}) => {
-  if (!data || data.length === 0) {
-    return <div>No data to display</div>;
-  }
-
+const UniversalTable: React.FC<UniversalTableProps> = ({ data }) => {
   const columns = Object.keys(data[0]);
 
   return (
-    <table>
+    <table className={styles.universalTable}>
       <thead>
         <tr>
           {columns.map((column) => (
-            <th key={column}>{column}</th>
+            <th key={column} className={styles.universalHeader}>
+              {column}
+            </th>
           ))}
         </tr>
       </thead>
       <tbody>
         {data.map((row, rowIndex) => (
-          <tr key={rowIndex}>
+          <tr
+            key={rowIndex}
+            className={rowIndex % 2 === 0 ? styles.evenRow : styles.oddRow}
+          >
             {columns.map((column) => (
-              <td key={column}>{row[column]}</td>
+              <td key={column} className={styles.universalCell}>
+                {row[column]}
+              </td>
             ))}
           </tr>
         ))}

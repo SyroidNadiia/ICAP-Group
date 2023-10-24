@@ -24,7 +24,7 @@ const initialValues: FormValues = {
   password: "",
 };
 
-const LoginSchema = Yup.object({
+const registerSchema = Yup.object({
   username: Yup.string().required("Name is required"),
   password: Yup.string()
     .required("Password is required")
@@ -50,7 +50,7 @@ const LoginForm: React.FC = () => {
     useFormik({
       initialValues,
       onSubmit: onHandleSubmit,
-      validationSchema: LoginSchema,
+      validationSchema: registerSchema,
     });
 
   return (

@@ -1,0 +1,32 @@
+.universalTable {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.universalHeader {
+  background-color: #f2f2f2;
+  color: #333;
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.universalCell {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.evenRow {
+  background-color: #f2f2f2;
+}
+
+.oddRow {
+  background-color: #fff;
+}

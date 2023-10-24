@@ -1,5 +1,5 @@
 import { useAuth } from "@/hooks/useAuth";
-import { selectIsLoggedIn } from "@/redux/auth/authSelectors";
+
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -12,8 +12,6 @@ type Props = {
 };
 
 const Navigation = ({ navLinks }: Props) => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-
   return (
     <>
       {navLinks.map((link) => (
@@ -21,14 +19,6 @@ const Navigation = ({ navLinks }: Props) => {
           {link.label}
         </Link>
       ))}
-
-      {isLoggedIn ? (
-        <>
-          <Link href="/table">Table</Link>
-        </>
-      ) : (
-        <Link href="/signin">SignIn</Link>
-      )}
     </>
   );
 };

@@ -2,8 +2,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import Notiflix from "notiflix";
 
-axios.defaults.baseURL = "http://146.190.118.121/api/";
-axios.defaults.headers.common["Content-Type"] = "application/json";
+axios.defaults.baseURL = "https://technical-task-api.icapgroupgmbh.com/api";
+// axios.defaults.headers.common["Content-Type"] = "application/json";
 
 interface LoginData {
   username: string;

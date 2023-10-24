@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation/Navigation";
-import store from "@/redux/store";
+import store, { persistor } from "@/redux/store";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { BrowserRouter } from "react-router-dom";
+import { StoreProvider } from "@/redux/StoreProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,13 +26,10 @@ export default function RootLayout({
   ];
 
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Provider store={store}>
-          <Navigation navLinks={navLinks} />
-          {children}
-        </Provider>
-      </body>
-    </html>
+    <StoreProvider>
+      <html lang="en">
+        <body className={inter.className}>{children}</body>
+      </html>
+    </StoreProvider>
   );
 }
