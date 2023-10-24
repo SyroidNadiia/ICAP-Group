@@ -4,15 +4,21 @@ import { logIn } from "./authOperations";
 interface ServerResponse {
   data: {
     user: any;
+    token?: string | null;
+    isLoggedIn: boolean;
   };
 }
 
 interface AuthState {
   user: any;
+  token: string | null;
+  isLoggedIn: boolean;
 }
 
 const initialState: AuthState = {
-  user: null,
+  user: { name: null, email: null },
+  token: null,
+  isLoggedIn: false,
 };
 
 const authSlice = createSlice({
@@ -30,6 +36,11 @@ const authSlice = createSlice({
             action.payload.data.user
           ) {
             state.user = action.payload.data.user;
+            state.token =
+              action.payload.data.token !== undefined
+                ? action.payload.data.token
+                : null;
+            state.isLoggedIn = true;
           } else {
             state.user = { name: null, email: null };
           }
